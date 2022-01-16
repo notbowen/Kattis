@@ -1,2 +1,2 @@
 # Kattis
-## GitHub Repo for my Kattis attempts
+GitHub Repo for my Kattis attempts
