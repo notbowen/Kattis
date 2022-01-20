@@ -1,26 +1,34 @@
 #include <iostream>
 #include <sstream>
+#include <vector>
 
-int count(int n) {
-    if (n == 1) {
-        return 1;
+int x;
+
+void count(std::string n) {
+    if (n == "1") {
+        x++;
+        return;
     } else {
-        std::string x;
-        std::stringstream ss;
-        ss << n;
-        ss >> x;
-        return count(x.length()) + 1;
+        x++;
+        count(std::to_string(n.size()));
     }
 }
 
 int main() {
     std::string n;
+    std::vector<int> output;
     while (true) {
+        x = 0;
         std::cin >> n;
         if (n == "END") {
             break;
         }
-        std::cout << count(std::stoi(n));   
+        count(n);
+        output.push_back(x);
+    }
+
+    for (int i : output) {
+        std::cout << i << "\n";
     }
     return 0;
 }
