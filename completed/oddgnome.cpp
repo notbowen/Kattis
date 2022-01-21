@@ -1,5 +1,6 @@
 #include <ios>
 #include <iostream>
+#include <limits>
 
 int main() {
     std::ios_base::sync_with_stdio(false);
@@ -16,9 +17,11 @@ int main() {
         for (int j = 0; j < (iterations - 1); j++) {
             std::cin >> input;
             if ((input - 1) != prevNum) {
-                std::cout << j << "\n";
+                std::cout << j + 2 << "\n";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 break;
             }
+            prevNum = input;
         }
     }
     return 0;
