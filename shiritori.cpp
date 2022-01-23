@@ -7,7 +7,7 @@ int main() {
 
     int n;
 	std::cin >> n;
-	std::string inputs[m];
+	std::string inputs[n];
 	
 	for (int i = 0; i < n; i++) {
 		std::cin >> inputs[i];
