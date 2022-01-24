@@ -7,18 +7,21 @@ int main() {
 
     int n;
 	std::cin >> n;
-	std::string inputs[n];
+	std::string input;
+	std::vector<std::string> vec;
 	
 	for (int i = 0; i < n; i++) {
-		std::cin >> inputs[i];
+		std::cin >> input; 
 		if (i != 0) {
 			// check if last char == first char
 			// check for repitition
 			// if either is yes, break and print wong
 			// print i % 2 == 0 : player 1
 			//              else: player 2
-			if (inputs[i].front() != inputs[i-1].back() || \
-			std::find(inputs, inputs+n, inputs[i]) == inputs+n ) {
+
+			auto it = std::find(vec.begin(), vec.end(), input);
+
+			if (input.front() != vec.back().back() || it != vec.end()) {
 				if (i % 2 == 0) {
 					std::cout << "Player 1 lost";
 				} else {
@@ -27,6 +30,7 @@ int main() {
 				return 0;
 			}
 		}
+		vec.push_back(input);
 	}
 
 	std::cout << "Fair Game";
