@@ -14,6 +14,9 @@ int main() {
 		if (i != 0) {
 			// check if last char == first char
 			// check for repitition
+			// if either is yes, break and print wong
+			// print i % 2 == 0 : player 1
+			//              else: player 2
 		}
 	}
 }
