@@ -17,6 +17,18 @@ int main() {
 			// if either is yes, break and print wong
 			// print i % 2 == 0 : player 1
 			//              else: player 2
+			if (inputs[i].front() != inputs[i-1].back() || \
+			std::find(inputs, inputs+n, inputs[i]) == inputs+n ) {
+				if (i % 2 == 0) {
+					std::cout << "Player 1 lost";
+				} else {
+					std::cout << "Player 2 lost";
+				}
+				return 0;
+			}
 		}
 	}
+
+	std::cout << "Fair Game";
+	return 0;
 }
