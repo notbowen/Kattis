@@ -7,8 +7,8 @@ int main() {
 
     int n;
 	std::cin >> n;
-	std::string input;
-	std::vector<std::string> vec;
+	std::string input, prevInput;
+	std::set<std::string> inputs;
 	
 	for (int i = 0; i < n; i++) {
 		std::cin >> input; 
@@ -19,9 +19,7 @@ int main() {
 			// print i % 2 == 0 : player 1
 			//              else: player 2
 
-			auto it = std::find(vec.begin(), vec.end(), input);
-
-			if (input.front() != vec.back().back() || it != vec.end()) {
+			if (input.front() != prevInput.back() || inputs.count(input) == 1) {
 				if (i % 2 == 0) {
 					std::cout << "Player 1 lost";
 				} else {
@@ -30,7 +28,8 @@ int main() {
 				return 0;
 			}
 		}
-		vec.push_back(input);
+		prevInput = input;
+		inputs.insert(input);
 	}
 
 	std::cout << "Fair Game";
