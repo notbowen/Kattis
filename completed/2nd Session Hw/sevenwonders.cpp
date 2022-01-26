@@ -29,6 +29,6 @@ int main() {
 
     int output = (int)(std::pow(data['T'], 2)) + (int)(std::pow(data['C'], 2)) + (int)(std::pow(data['G'], 2));
     std::sort(vec.begin(), vec.end(), cmp);
-    output += vec.at(0).second;
+    output += (vec.at(0).second * 7);
     std::cout << output;
 }
