@@ -7,63 +7,55 @@
 using namespace std;
 
 struct veg {
-    long long weight = 0, cuts = 1ll;
-    long double dividedWeight = 0;
+    int cuts = 0;
+    int weight = 0;
+    float slicedWeight = 0;
 
-    bool operator < (const veg &veg) const {
-        return this->dividedWeight < veg.dividedWeight;
+    void recalcWeight() {
+        slicedWeight = static_cast<float>(weight) / static_cast<float>(cuts);
+    }
+
+    bool operator<(const veg& other) const {
+        return slicedWeight < other.slicedWeight;
     }
 };
-
-bool cmp(veg lhs, veg rhs) {
-    return lhs.weight > rhs.weight;
-}
 
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
 	cout.tie(nullptr);
 
-	long double t;
-	long long n;
-    veg in;
+    float t;
+    int n;
     deque<veg> decc;
 
-	cin >> t >> n;
+    cin >> t >> n;
 
-    // Get Inputs
     for (int i = 0; i < n; i++) {
-        cin >> in.weight;
-        in.dividedWeight = in.weight;
-        decc.push_back(in);
+        veg input;
+        cin >> input.weight;
+        input.slicedWeight = (float) input.weight;
+        input.cuts = 1;
+
+        decc.push_back(input);
     }
 
-    sort(decc.begin(), decc.end(), cmp);
-
-    int i = 0;
     while (true) {
-        decc[i].cuts++;
-        decc[i].dividedWeight = (long double) decc[i].weight / decc[i].cuts;
+        auto maxVeg = max_element(decc.begin(),decc.end());
 
-        auto smallest = min_element(decc.begin(), decc.end());
-        auto biggest = max_element(decc.begin(), decc.end());
+        maxVeg->cuts++;
+        maxVeg->recalcWeight();
 
-        long double divided = (long double) smallest->dividedWeight / (long double) biggest->dividedWeight;
+        maxVeg = max_element(decc.begin(),decc.end());
+        auto minVeg = min_element(decc.begin(),decc.end());
 
-        if (divided >= t) {
-            break;
-        }
-
-        if (i < decc.size()) {
-            i++;
-        } else {
-            i = 0;
-        }
+        float slicedWeight = minVeg->slicedWeight / maxVeg->slicedWeight;
+        if (slicedWeight >= t) break;
     }
 
-    long long totalCuts = 0;
+    int totalCuts = 0;
     for (auto it : decc) {
-        totalCuts += it.cuts - 1;
+        totalCuts += (it.cuts - 1);
     }
 
     cout << totalCuts;
