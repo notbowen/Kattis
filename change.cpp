@@ -22,6 +22,7 @@ int32_t main() {
         return 0;
     }
 
+    bool stuckBetZero = false;
     while (total > 0) {
         if (total >= 50 && fiftyCount < fifty) {
             fiftyCount++;
@@ -36,22 +37,23 @@ int32_t main() {
             fiveCount++;
             total -= 5;
         } else {
-            if (total > 0 && fiveCount < five) {
-                fiveCount++;
-                total -= 5;
-            } else if (total > 5 && tenCount < ten) {
-                tenCount++;
-                total -= 10;
-            } else if (total > 10 && twentyCount < twenty) {
-                twentyCount++;
-                total -= 20;
-            } else if (total > 20 && fiftyCount < fifty) {
-                fiftyCount++;
-                total -= 50;
-            } else {
-                cout << -1;
-                break;
-            }
+            stuckBetZero = true;
+            break;
+        }
+    }
+
+    if (stuckBetZero) {
+        if (total >= 0 && fiveCount < five) {
+            fiveCount++;
+        } else if (total >= 5 && tenCount < ten) {
+            tenCount++;
+        } else if (total >= 10 && twentyCount < twenty) {
+            twentyCount++;
+        } else if (total >= 20 && fiftyCount < fifty) {
+            fiftyCount++;
+        } else {
+            cout << -1;
+            return 0;
         }
     }
 
