@@ -4,7 +4,7 @@
 #pragma GCC optimization("O3")
 #pragma GCC optimization("unroll-loops")
 
-#define int long long int
+#define int long long
 
 using namespace std;
 
