@@ -42,15 +42,13 @@ int main() {
 
     while (true) {
         auto maxVeg = max_element(decc.begin(),decc.end());
-
-        maxVeg->cuts++;
-        maxVeg->recalcWeight();
-
-        maxVeg = max_element(decc.begin(),decc.end());
         auto minVeg = min_element(decc.begin(),decc.end());
 
         float slicedWeight = minVeg->slicedWeight / maxVeg->slicedWeight;
         if (slicedWeight >= t) break;
+
+        maxVeg->cuts++;
+        maxVeg->recalcWeight();
     }
 
     int totalCuts = 0;
